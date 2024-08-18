@@ -7,4 +7,16 @@ body {
   color: brown;
   text-align: center;
   margin-top: 100px;
+
+  #joke-btn{
+    background-color: black;
+  }
+}
+
+.card-body{
+  width: 30rem;
+  height: 15rem;
+  margin: 0 auto 0 auto;
+  background-color: #474747;
+  color: white;
 }
