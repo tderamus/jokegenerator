@@ -2,17 +2,20 @@
 import getRequest from '../api/promises';
 
 const events = () => {
-  document.querySelector('#joke-btn').addEventListener('click', () => {
-    const punch = document.querySelector('#joke-btn');
+  const punch = document.querySelector('#joke-btn');
+  punch.addEventListener('click', () => {
     const joke = document.querySelector('#joke-setup');
     const punchline = document.querySelector('#joke-punchline');
     getRequest().then(() => {
       punch.textContent = 'GET PUNCHLINE';
-      // getRequest().then(console.warn);
       getRequest().then((data) => {
         joke.textContent = data.setup;
-        punchline.textContent = data.delivery;
-      });
+      }, punch.addEventListener('click', () => {
+        getRequest().then((data) => {
+          punch.textContent = 'GET NEW JOKE';
+          punchline.textContent = data.delivery;
+        });
+      }));
     });
   });
 
