@@ -3,8 +3,26 @@
 
 
 body {
-  background-color: antiquewhite;
+  background-color: black;
   color: brown;
   text-align: center;
   margin-top: 100px;
+
+  #joke-btn{
+    background-color: black;
+  }
+}
+
+#app{
+  height: 400px;
+  width: 50%;
+  margin: 0 25% 0 25%;
+}
+
+.card-body{
+  width: 100%;
+  height: 20rem;
+  margin: 0 auto 0 auto;
+  background-color: #474747;
+  color: white;
 }
