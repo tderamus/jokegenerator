@@ -12,7 +12,7 @@ const init = () => {
     <h5 class="card-title">JOKE GENERATOR</h5>
     <p id="joke-setup" class="card-text"></p>
     <p id="joke-punchline" class="card-text"></p>
-    <a href="#" id="joke-btn" class="btn btn-primary">GET JOKE</a>
+    <a href="#" id="joke-btn" class="btn btn-primary">GET A JOKE</a>
   </div>
 </div>
   `;
