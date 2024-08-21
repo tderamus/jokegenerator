@@ -3,21 +3,26 @@ import getRequest from '../api/promises';
 
 const events = () => {
   const punch = document.querySelector('#joke-btn');
+  const joke = document.querySelector('#joke-setup');
+  const punchline = document.querySelector('#joke-punchline');
   punch.addEventListener('click', () => {
-    const joke = document.querySelector('#joke-setup');
-    const punchline = document.querySelector('#joke-punchline');
     getRequest().then((data) => {
       if (punch.textContent === 'GET A JOKE') {
         joke.textContent = data.setup;
-        punch.textContent = 'GET PUNCHLINE';
-      } else
-      if (punch.textContent === 'GET PUNCHLINE') {
-        punchline.textContent = data.delivery;
-        punch.textContent = 'GET NEW JOKE';
-      } else {
-        events();
+        punch.textContent = 'GET PUNCH LINE';
+        punch.setAttribute('id', 'punchline-btn');
+        punch.addEventListener('click', () => {
+          punch.textContent = 'GET NEW JOKE';
+          punchline.textContent = data.delivery;
+          punch.setAttribute('id', 'new-joke-btn');
+          punch.addEventListener('click', () => {
+            punch.textContent = 'GET A JOKE';
+            punchline.textContent = '';
+          });
+        });
       }
     });
   });
 };
+
 export default events;
