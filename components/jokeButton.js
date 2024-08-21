@@ -3,30 +3,26 @@ import getRequest from '../api/promises';
 
 const events = () => {
   const punch = document.querySelector('#joke-btn');
+  const joke = document.querySelector('#joke-setup');
+  const punchline = document.querySelector('#joke-punchline');
   punch.addEventListener('click', () => {
-    const joke = document.querySelector('#joke-setup');
-    const punchline = document.querySelector('#joke-punchline');
-    getRequest().then(() => {
-      punch.textContent = 'GET PUNCHLINE';
-      getRequest().then((data) => {
+    getRequest().then((data) => {
+      if (punch.textContent === 'GET A JOKE') {
         joke.textContent = data.setup;
-      }, punch.addEventListener('click', () => {
-        getRequest().then((data) => {
+        punch.textContent = 'GET PUNCH LINE';
+        punch.setAttribute('id', 'punchline-btn');
+        punch.addEventListener('click', () => {
           punch.textContent = 'GET NEW JOKE';
           punchline.textContent = data.delivery;
+          punch.setAttribute('id', 'new-joke-btn');
+          punch.addEventListener('click', () => {
+            punch.textContent = 'GET A JOKE';
+            punchline.textContent = '';
+          });
         });
-      }));
+      }
     });
   });
-
-  // document.querySelector('#joke-btn').addEventListener('click', () => {
-  //   const punch = document.querySelector('#joke-btn');
-  //   getRequest().then(() => {
-  //     punch.textContent = 'GET NEW JOKE';
-  //   });
-  //   getRequest().then((data) => {
-  //     punchline.textContent = data.delivery;
-  //   });
-  // });
 };
+
 export default events;
